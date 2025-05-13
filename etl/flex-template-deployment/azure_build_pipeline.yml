@@ -1,0 +1,47 @@
+# Build pipeline for Python Dataflow program deployed using flex template
+
+trigger: none
+
+parameters:
+  - name: artifactName
+    type: string
+    default: ""
+  - name: variableGroup
+    type: string
+    default: ""
+  - name: templateDirectory
+    type: string
+    default: ""
+  - name: registryName
+    type: string
+    default: ""
+
+jobs:
+  - job: copy_files
+    displayName: 'Copy Files'
+    pool: 'MCC Applications'
+    steps:
+      - task: CopyFiles@2
+        displayName: 'Copy files to artifact staging'
+        inputs:
+          SourceFolder: '$(Build.SourcesDirectory)'
+          contents: '$(Build.SourcesDirectory)/${{parameters.templateDirectory}}/**'
+          flattenFolders: true
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+          ArtifactName: '${{parameters.artifactName}}'
+        condition: succeededOrFailed()
+  
+  - job: build_docker_container
+    displayName: 'Create and push Docker container for dataflow job'
+    dependsOn: copy_files
+    pool: 'MCC Applications'
+    variables:
+      - group: '${{parameters.variableGroup}}'
+    steps:
+      - template: 'build_and_publish_docker.yml'
+        parameters:
+          artifactName: '${{parameters.artifactName}}'
+          registryName: '${{parameters.registryName}}'

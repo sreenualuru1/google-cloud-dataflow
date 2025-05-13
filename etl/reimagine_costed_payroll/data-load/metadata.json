@@ -1,0 +1,102 @@
+{
+  "name": "Getting started Python flex template",
+  "description": "An example flex template for Python.",
+  "parameters": [
+    {
+      "helpText": "Example: ml-mps-adl-etl-d-047c",
+      "label": "project",
+      "name": "project"
+    },
+    {
+      "helpText": "Example: us-central1",
+      "label": "region",
+      "name": "region"
+    },
+    {
+      "name": "table_name",
+      "label": "table_name",
+      "helpText": "Example: DW_JOB_D"
+    },
+    {
+      "name": "data_load_date",
+      "label": "data_load_date",
+      "helpText": "Example: 20240101"
+    },
+    {
+      "name": "data_file_prefix",
+      "label": "data_file_prefix",
+      "helpText": "Example: gs://ml-5d55-phi-adl_datavl-adl-us-d/re-imagine_files/DW_JOB_D"
+    },
+    {
+      "name": "file_format",
+      "label": "file_format",
+      "helpText": "Example: json"
+    },
+    {
+      "name": "type_of_load",
+      "label": "type_of_load",
+      "helpText": "Example: full or incremental"
+    },
+    {
+      "name": "primary_keys",
+      "label": "primary_keys",
+      "helpText": "Example: job_id"
+    },
+    {
+      "name": "schema_path",
+      "label": "schema_path",
+      "helpText": "Example: gs://ml-5d55-phi-adl_datavl-adl-us-d/schemas/DW_JOB_D.json"
+    },
+    {
+      "name": "bq_dataset",
+      "label": "bq_dataset",
+      "helpText": "Example: in_reiamgine_costed_payroll"
+    },
+    {
+      "name": "bq_stg_dataset",
+      "label": "bq_stg_dataset",
+      "helpText": "Example: in_reiamgine_costed_payroll"
+    },
+    {
+      "name": "bq_project",
+      "label": "bq_project",
+      "helpText": "Example: ml-mps-adl-ora-hrwk-d-1488"
+    },
+    {
+      "name": "error_path",
+      "label": "error_path",
+      "helpText": "Example: gs://ml-5d55-phi-adl_datavl-adl-us-d/ERROR_RECORDS/"
+    },
+    {
+      "name": "bq_temp_location",
+      "label": "bq_temp_location",
+      "helpText": "Example: gs://ml-5d55-phi-adl_datavl-adl-us-d/bq_load/temp/"
+    },
+    {
+      "name": "tables_having_dollar_columns",
+      "label": "tables_having_dollar_columns",
+      "helpText": "Example: table_names(comma-separated)",
+      "isOptional": true
+    },
+    {
+      "label": "service_account_email",
+      "name": "service_account_email",
+      "helpText": "Example: s6-mps-adl-d-df-dvl-con@ml-mps-adl-int-datavl-d-ea88.iam.gserviceaccount.com"
+    },
+    {
+      "helpText": "Example: https://www.googleapis.com/compute/v1/projects/ml-fpt-adl-ahvpc-d-3f33-h/regions/us-central1/subnetworks/ml-app-adl-d-h-us-central1-aide-datavl-dataflow",
+      "label": "subnetwork",
+      "name": "subnetwork"
+    },
+    {
+      "helpText": "Example: 1",
+      "label": "num_workers",
+      "name": "num_workers"
+    },
+    {
+      "helpText": "Example: 10",
+      "label": "max_num_workers",
+      "name": "max_num_workers"
+    }
+  ]
+}

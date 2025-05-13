@@ -1,0 +1,114 @@
+{
+  "name": "dataflow-ofu-recon-inc",
+  "description": "Perform ofu reconcilliation for the incremental extracts.",
+  "parameters": [
+    {
+      "helpText": "Example: df-philips-device-obs-flat-1-0-0-718381",
+      "label": "job_name",
+      "name": "job_name",
+      "isOptional": true
+    },
+    {
+      "helpText": "Example: DataflowRunner",
+      "label": "runner",
+      "name": "runner",
+      "isOptional": true
+    },
+    {
+      "helpText": "Example: false",
+      "label": "use_public_ips",
+      "name": "use_public_ips",
+      "isOptional": true
+    },
+    {
+      "helpText": "DataFlow Project -Example: ml-mps-adl-aproc-phi-t-f7a8",
+      "label": "project",
+      "name": "project"
+    },
+    {
+      "helpText": "Example: us-central1",
+      "label": "region",
+      "name": "region"
+    },
+    {
+      "helpText": "Example: s6-mps-adl-t-df-philips-con@ml-mps-adl-aproc-phi-t-f7a8.iam.gserviceaccount.com",
+      "label": "service_account_email",
+      "name": "service_account_email"
+    },
+    {
+      "helpText": "Example: https://www.googleapis.com/compute/v1/projects/ml-fpt-adl-ahvpc-t-e8fd-h/regions/us-central1/subnetworks/ml-app-adl-t-h-us-central1-aide-dataflow-devices",
+      "label": "subnetwork",
+      "name": "subnetwork"
+    },
+    {
+      "helpText": "Staging location - Example: GCS Bucket for Staging files - Example:gs://ml-48b7-phi-temp-ofu-df-adl-us-d/staging",
+      "label": "staging_location",
+      "name": "staging_location"
+    },
+    {
+      "helpText": "Temp location - Example: GCS Bucket for Temp files - Example:gs://ml-48b7-phi-temp-ofu-df-adl-us-d/temp",
+      "label": "temp_location",
+      "name": "temp_location"
+    },
+    {
+      "helpText": "Example: 1",
+      "label": "num_workers",
+      "name": "num_workers"
+    },
+    {
+      "helpText": "Example: 10",
+      "label": "max_num_workers",
+      "name": "max_num_workers"
+    },
+    {
+      "helpText": "Example: 0.1 to 0.9",
+      "label": "worker-utilization-hint",
+      "name": "worker-utilization-hint"
+    },
+    {
+      "helpText":"Name of the GCS bucket for destination unzipped files from the Decompression DF Job. Formatted without gs:// or / (e.g. ml-a43b-phi-project-nnn-us-n) ",
+      "label":"unzipped_bucket",
+      "name":"unzipped_bucket"
+    }, 
+    {
+        "helpText":"GCS Bucket Folder(prefix) for destination unzipped files from the Decompression DF Job. Formatted without / at the beginning or end  (e.g. test/bicc_zipped)",
+        "label":"unzipped_prefix",
+        "name":"unzipped_prefix"
+    }, 
+    {
+        "helpText":"GCS Bucket aka the Flex Template Helper Files Bucket. Where the mapper csv is stored. - Example: ml-4a9f-phi-udp_bicc-adl-us-d",
+        "label":"csv_map_bucket",
+        "name":"csv_map_bucket"
+    }, 
+    {
+        "helpText":"Name of CSV Mapper File - Example: Extract_FileName_To_TableName.csv",
+        "label":"csv_map_file",
+        "name":"csv_map_file"
+    }, 
+    {
+        "helpText":"Prefix for csv file. The subfolder path in GCS bucket. Do not include / at the beginning or end of the path",
+        "label":"csv_prefix",
+        "name":"csv_prefix"
+    }, 
+    {
+        "helpText":"Target BQ Project -Example: ml-mps-adl-aproc-phi-t-f7a8",
+        "label":"bq_project",
+        "name":"bq_project"
+    }, 
+    {
+        "helpText":"BigQuery Dataset for the Data External tables - Example: phi_harwick_dump_us_d",
+        "label":"dump_dataset",
+        "name":"dump_dataset"
+    }, 
+    {
+        "helpText":"Source BQ Dataset containing all BICC Extract Tables - Example: phi_harwick_us_d",
+        "label":"base_dataset",
+        "name":"base_dataset"
+    }, 
+    {
+        "helpText":"Prefix for the bicc_external",
+        "label":"bicc_external_prefix",
+        "name":"bicc_external_prefix"
+    }
+  ]
+}

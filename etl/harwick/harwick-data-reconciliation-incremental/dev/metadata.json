@@ -1,0 +1,121 @@
+{
+  "name": "dataflow-ofu-recon-inc",
+  "description": "Perform ofu reconcilliation for the incremental extracts.",
+  "parameters": [
+    {
+      "helpText": "Example: df-philips-device-obs-flat-1-0-0-718381",
+      "label": "job_name",
+      "name": "job_name",
+      "isOptional": true
+    },
+    {
+      "helpText": "Example: DataflowRunner",
+      "label": "runner",
+      "name": "runner",
+      "isOptional": true
+    },
+    {
+      "helpText": "Example: false",
+      "label": "use_public_ips",
+      "name": "use_public_ips",
+      "isOptional": true
+    },
+    {
+      "helpText": "DataFlow Project -Example: ml-mps-adl-aproc-phi-t-f7a8",
+      "label": "project",
+      "name": "project"
+    },
+    {
+      "helpText": "Example: us-central1",
+      "label": "region",
+      "name": "region"
+    },
+    {
+      "helpText": "Example: s6-mps-adl-t-df-philips-con@ml-mps-adl-aproc-phi-t-f7a8.iam.gserviceaccount.com",
+      "label": "service_account_email",
+      "name": "service_account_email"
+    },
+    {
+      "helpText": "Example: https://www.googleapis.com/compute/v1/projects/ml-fpt-adl-ahvpc-t-e8fd-h/regions/us-central1/subnetworks/ml-app-adl-t-h-us-central1-aide-dataflow-devices",
+      "label": "subnetwork",
+      "name": "subnetwork"
+    },
+    {
+      "helpText": "Staging location - Example: GCS Bucket for Staging files - Example:gs://ml-48b7-phi-temp-ofu-df-adl-us-d/staging",
+      "label": "staging_location",
+      "name": "staging_location"
+    },
+    {
+      "helpText": "Temp location - Example: GCS Bucket for Temp files - Example:gs://ml-48b7-phi-temp-ofu-df-adl-us-d/temp",
+      "label": "temp_location",
+      "name": "temp_location"
+    },
+    {
+      "helpText": "Example: 1",
+      "label": "num_workers",
+      "name": "num_workers"
+    },
+    {
+      "helpText": "Example: 10",
+      "label": "max_num_workers",
+      "name": "max_num_workers"
+    },
+    {
+      "helpText": "Target BQ Project -Example: ml-mps-adl-aproc-phi-t-f7a8",
+      "label": "bq_project",
+      "name": "bq_project"
+    },
+    {
+      "helpText": "Source BQ Dataset containing all BICC Extract Tables - Example: phi_harwick_us_d",
+      "label": "bq_basetable_source_dataset",
+      "name": "bq_basetable_source_dataset"
+    },
+    {
+      "helpText": "BigQuery Dataset for Incremental Data External tables - Example: phi_harwick_us_d",
+      "label": "bq_inc_external_dataset",
+      "name": "bq_inc_external_dataset"
+    },
+    {
+      "helpText": "Target BQ Dataset containing Statistics Table - Example: datarecon",
+      "label": "bq_target_recon_dataset",
+      "name": "bq_target_recon_dataset"
+    },
+    {
+      "helpText": "Target BQ Statistics Table - Example: DAILY_STATS",
+      "label": "bq_table_base_recon",
+      "name": "bq_table_base_recon"
+    },
+    {
+      "helpText": "GCS Bucket aka the Zipped Bucket. Where JSON and Mapping file is stored - Example: ml-4a9f-phi-udp_bicc-adl-us-d",
+      "label": "zipped_bucket",
+      "name": "zipped_bucket"
+    },
+    {
+      "helpText": "GCS Bucket Folder(prefix) Containing PVO JSON Files: Prefix for json status files. The subfolder path in GCS bucket. Do not include / at the beginning or end of the path - Example: bicc_zipped/_MCC or any other subofolder in the bucket",
+      "label": "json_prefix",
+      "name": "json_prefix"
+    },
+    {
+      "helpText": "GCS Bucket aka the Flex Template Helper Files Bucket. Where the mapper csv is stored. - Example: ml-4a9f-phi-udp_bicc-adl-us-d",
+      "label": "csv_map_bucket",
+      "name": "csv_map_bucket"
+    },
+    {
+      "helpText": "Name of CSV Mapper File - Example: Extract_FileName_To_TableName.csv",
+      "label": "csv_map_file",
+      "name": "csv_map_file"
+    },
+    {
+      "helpText": "Prefix for csv file. The subfolder path in GCS bucket. Do not include / at the beginning or end of the path",
+      "label": "csv_prefix",
+      "name": "csv_prefix"
+    },
+    {
+      "helpText": "Prefix for the dataset being loaded",
+      "label": "extract_name",
+      "name": "extract_name",
+      "default": "",
+      "isOptional": true
+    }
+  ]
+}

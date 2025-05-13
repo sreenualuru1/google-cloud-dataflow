@@ -1,0 +1,129 @@
+{
+  "name": "fhir-convert-documents-to-base64",
+  "description": "Convert document reference files to base64 for inline population.",
+  "parameters": [
+    {
+      "helpText": "Example: df-philips-device-obs-flat-1-0-0-718381",
+      "label": "job_name",
+      "name": "job_name",
+      "isOptional": true
+    },
+    {
+      "helpText": "Example: DataflowRunner",
+      "label": "runner",
+      "name": "runner",
+      "isOptional": true
+    },
+    {
+      "helpText": "Example: false",
+      "label": "use_public_ips",
+      "name": "use_public_ips",
+      "isOptional": true
+    },
+    {
+      "helpText": "DataFlow Project -Example: ml-mps-adl-aproc-phi-t-f7a8",
+      "label": "project",
+      "name": "project"
+    },
+    {
+      "helpText": "Example: us-central1",
+      "label": "region",
+      "name": "region"
+    },
+    {
+      "helpText": "Example: s6-mps-adl-t-df-philips-con@ml-mps-adl-aproc-phi-t-f7a8.iam.gserviceaccount.com",
+      "label": "service_account_email",
+      "name": "service_account_email"
+    },
+    {
+      "helpText": "Example: https://www.googleapis.com/compute/v1/projects/ml-fpt-adl-ahvpc-t-e8fd-h/regions/us-central1/subnetworks/ml-app-adl-t-h-us-central1-aide-dataflow-devices",
+      "label": "subnetwork",
+      "name": "subnetwork"
+    },
+    {
+      "helpText": "Staging location - Example: GCS Bucket for Staging files - Example:gs://ml-48b7-phi-temp-ofu-df-adl-us-d/staging",
+      "label": "staging_location",
+      "name": "staging_location"
+    },
+    {
+      "helpText": "Temp location - Example: GCS Bucket for Temp files - Example:gs://ml-48b7-phi-temp-ofu-df-adl-us-d/temp",
+      "label": "temp_location",
+      "name": "temp_location"
+    },
+    {
+      "helpText": "Example: 10",
+      "label": "max_num_workers",
+      "name": "max_num_workers"
+    },
+    {
+      "helpText": "Example: 8",
+      "label": "number_of_worker_harness_threads",
+      "name": "number_of_worker_harness_threads"
+    },
+    {
+      "helpText": "Example: project id of the intfhir project",
+      "label": "intfhr_project_id",
+      "name": "intfhr_project_id"
+    },
+    {
+      "helpText": "Example: dataset id of dataset to write to",
+      "label": "target_dataset_id",
+      "name": "target_dataset_id"
+    },
+    {
+      "helpText": "Example: base table ID to take",
+      "label": "base_table_id",
+      "name": "base_table_id"
+    },
+    {
+      "helpText": "Example: table ID to write to",
+      "label": "target_table_id",
+      "name": "target_table_id"
+    },
+    {
+      "helpText": "Example: 1500",
+      "label": "batch_size",
+      "name": "batch_size"
+    },
+    {
+      "helpText": "Example: ID of temp bucket",
+      "label": "temp_bucket_id",
+      "name": "temp_bucket_id"
+    },
+    {
+      "helpText": "Example: Source Dataset ID",
+      "label": "source_dataset_id",
+      "name": "source_dataset_id"
+    },
+    {
+      "helpText": "Example: External Table ID",
+      "label": "external_table_id",
+      "name": "external_table_id"
+    },
+    {
+      "helpText": "Example: ignore_list for Datasets",
+      "label": "ignore_list",
+      "name": "ignore_list"
+    },
+    {
+      "helpText": "Example: archive folder for files",
+      "label": "archive",
+      "name": "archive"
+    },
+    {
+      "helpText": "Example: Query Start time",
+      "label": "start_date",
+      "name": "start_date"
+    },
+    {
+      "helpText": "Example: Query End time",
+      "label": "end_date",
+      "name": "end_date"
+    },
+    {
+      "helpText": "Example: date or last_updated",
+      "label": "date_type",
+      "name": "date_type"
+    }
+  ]
+}

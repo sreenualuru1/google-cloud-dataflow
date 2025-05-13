@@ -1,0 +1,93 @@
+# This template builds a Docker container image and stores it in Artifact Registry for deploying a
+# Java Dataflow program using a flex template.
+
+parameters:
+  # The name of the artifact for the Dataflow program
+  - name: artifactName
+    type: string
+
+  # The name of the artifact registry where Docker container images are stored
+  - name: registryName
+    type: string
+
+steps:
+  - task: DownloadBuildArtifacts@1
+    displayName: 'Download build artifact ${{ parameters.artifactName }}'
+    inputs:
+      buildType: 'current'
+      downloadType: 'single'
+      artifactName: '${{ parameters.artifactName }}'
+      downloadPath: '$(System.DefaultWorkingDirectory)'
+
+  - powershell: |
+      # Use approle method to authenticate to Vault
+      function Get-LoginToken {
+          param(
+          [string]$vault_addr,
+          [string]$namespace,
+          [string]$role_id,
+          [string]$secret_id
+          )
+          $login_path = 'v1/{0}/auth/approle/login' -f $namespace
+          $loginparams = @{
+              Uri = '{0}/{1}' -f $vault_addr, $login_path
+              Method = "POST"
+              Body = @{role_id='{0}' -f $role_id; secret_id='{0}' -f $secret_id} | ConvertTo-Json
+              ContentType = 'application/json'
+          }
+          [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+          $restcommand = Invoke-WebRequest @loginparams | ConvertFrom-Json
+          $restcommand.auth.client_token
+      }
+
+      # Retrieve GCP OAUTH Tokens from Vault
+      function Get-GcpRolesetCreds {
+          param(
+          [string]$gcp_token_roleset,
+          [string]$vault_addr,
+          [string]$namespace,
+          [string]$vaultToken
+          )
+          $tf_gcp_token_path="v1/{0}/gcp/token/{1}" -f $namespace, $gcp_token_roleset
+          $providerparams = @{
+              Uri = '{0}/{1}' -f $vault_addr, $tf_gcp_token_path
+              Method = "GET"
+              Headers = @{ 'X-Vault-Token' = '{0}' -f $vaultToken }
+          }
+          [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+          $restcommand = Invoke-WebRequest @providerparams | ConvertFrom-Json
+          $restcommand.data.token
+      }
+
+      # Read variables
+      $vault_addr=$($env:VAULT_ADDRESS)
+      $namespace=$($env:VAULT_NAMESPACE)
+      $role_id=$($env:roleID)
+      $secret_id=$($env:secretID)
+
+      # Get Vault login token
+      $vaultToken = Get-LoginToken -vault_addr $vault_addr -namespace $namespace -role_id $role_id -secret_id $secret_id
+
+      # Get GCP OAUTH Tokens from Vault and store as Environment Variables
+      $tfProviderTokenRoleset = $($env:VAULT_ROLESET)
+      $tfProviderCreds = Get-GcpRolesetCreds -gcp_token_roleset  $tfProviderTokenRoleset -vault_addr $vault_addr -namespace $namespace -vaultToken $vaultToken
+      Write-Host "##vso[task.setvariable variable=SA_TOKEN;issecret=true]$tfProviderCreds"
+      Start-Sleep -s 1
+    displayName: 'Get OAuth token from Vault'
+    env:
+      roleID: $(Vault.RoleId)
+      secretID: $(Vault.SecretId)
+
+  - task: Bash@03
+    displayName: 'Create and push Docker container image'
+    env:
+      OAUTH_TOKEN: $(SA_TOKEN)
+    inputs:
+      targetType: 'inline'
+      script: |
+        cd $(System.DefaultWorkingDirectory)/${{ parameters.artifactName }}
+        echo $OAUTH_TOKEN | docker login -u oauth2accesstoken --password-stdin https://${{ parameters.registryName }}
+        docker build --no-cache --pull --tag ${{ parameters.registryName }}/${{ parameters.artifactName }} $(System.DefaultWorkingDirectory)/${{ parameters.artifactName }} || exit 1
+        docker push ${{ parameters.registryName }}/${{ parameters.artifactName }} || exit 1
+        echo "Removing Docker image..."
+        docker rmi ${{ parameters.registryName }}/${{ parameters.artifactName }} || exit 1

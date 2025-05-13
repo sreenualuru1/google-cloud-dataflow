@@ -1,0 +1,104 @@
+{
+  "name": "dataflow-ofu-bucket-archive-inc",
+  "description": "Archives files in the buckets.",
+  "parameters": [
+    {
+      "helpText": "Example: df-philips-device-obs-flat-1-0-0-718381",
+      "label": "job_name",
+      "name": "job_name",
+      "isOptional": true
+    },
+    {
+      "helpText": "Example: DataflowRunner",
+      "label": "runner",
+      "name": "runner",
+      "isOptional": true
+    },
+    {
+      "helpText": "Example: false",
+      "label": "use_public_ips",
+      "name": "use_public_ips",
+      "isOptional": true
+    },
+    {
+      "helpText": "DataFlow Project -Example: ml-mps-adl-aproc-phi-t-f7a8",
+      "label": "project",
+      "name": "project"
+    },
+    {
+      "helpText": "Example: us-central1",
+      "label": "region",
+      "name": "region"
+    },
+    {
+      "helpText": "Example: s6-mps-adl-t-df-philips-con@ml-mps-adl-aproc-phi-t-f7a8.iam.gserviceaccount.com",
+      "label": "service_account_email",
+      "name": "service_account_email"
+    },
+    {
+      "helpText": "Example: https://www.googleapis.com/compute/v1/projects/ml-fpt-adl-ahvpc-t-e8fd-h/regions/us-central1/subnetworks/ml-app-adl-t-h-us-central1-aide-dataflow-devices",
+      "label": "subnetwork",
+      "name": "subnetwork"
+    },
+    {
+      "helpText": "Staging location - Example: GCS Bucket for Staging files - Example:gs://ml-48b7-phi-temp-ofu-df-adl-us-d/staging",
+      "label": "staging_location",
+      "name": "staging_location"
+    },
+    {
+      "helpText": "Temp location - Example: GCS Bucket for Temp files - Example:gs://ml-48b7-phi-temp-ofu-df-adl-us-d/temp",
+      "label": "temp_location",
+      "name": "temp_location"
+    },
+    {
+      "helpText": "Example: 1",
+      "label": "num_workers",
+      "name": "num_workers"
+    },
+    {
+      "helpText": "Example: 10",
+      "label": "max_num_workers",
+      "name": "max_num_workers"
+    },
+    {
+      "helpText": "Name of the GCS bucket for source zip Files dumped from S3 bucket. Formatted without gs:// or / (e.g. ml-a43b-phi-project-nnn-us-n) ",
+      "label": "zip_bucket",
+      "name": "zip_bucket"
+    },
+    {
+      "helpText": "GCS Bucket Folder(prefix) for source zip Files dumped from S3 bucket. Formatted without / at the beginning or end  (e.g. test/bicc_zipped)",
+      "label": "zip_prefix",
+      "name": "zip_prefix"
+    },
+    {
+      "helpText": "Name of the extract. Formatted without / at the beginning or end. (e.g. FSC_LONG5)",
+      "label": "extract_name",
+      "name": "extract_name"
+    },
+    {
+      "helpText": "Name of the GCS bucket for destination unzipped files from the Decompression DF Job. Formatted without gs:// or / (e.g. ml-a43b-phi-project-nnn-us-n) ",
+      "label": "unzipped_bucket",
+      "name": "unzipped_bucket"
+    },
+    {
+      "helpText": "GCS Bucket Folder(prefix) for destination unzipped files from the Decompression DF Job. Formatted without / at the beginning or end  (e.g. test/bicc_zipped)",
+      "label": "unzip_prefix",
+      "name": "unzip_prefix"
+    },
+    {
+      "helpText": "GCS Bucket Folder(prefix) for destination archived files. Formatted without gs:// or / (e.g. ml-a43b-phi-project-nnn-us-n) ",
+      "label": "archive_bucket",
+      "name": "archive_bucket"
+    },
+    {
+      "helpText": "This is in the the unzipped_bucket. Formatted without / at the beginning or end  (e.g. test/bicc_zipped)",
+      "label": "archive_prefix",
+      "name": "archive_prefix"
+    },
+    {
+      "helpText": "This is the prefix of the bicc external subdirectory",
+      "label": "bicc_external_prefix",
+      "name": "bicc_external_prefix"
+    }
+  ]
+}

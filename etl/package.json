@@ -1,0 +1,6 @@
+{
+  "apply-timeout-minutes": 20,
+  "name": "app-etl",
+  "terraform-version": "0.14.11",
+  "version": "1.0.0"
+}
